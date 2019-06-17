@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.urls import reverse
+from django.views import generic
 
-def index(request):
-    context = {}
-    return render(request, 'blog/index.html', context)
+from .models import Post
+
+class IndexView(generic.ListView):
+    template_name = "blog/index.html"
+    context_object_name = "post_list"
+
+    def get_queryset(self):
+        return Post.objects.order_by("-date_created")[:6]
