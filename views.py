@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views import generic
 
-from .models import Post
+from .models import Post, Tag
 
 class IndexView(generic.ListView):
 	template_name = "blog/index.html"
@@ -16,3 +16,10 @@ class PostDetail(generic.DetailView):
 	model = Post
 	template_name = "blog/post.html"
 	context_object_name = "post"
+
+
+class TagDetail(generic.DetailView):
+	model = Tag
+	template_name = "blog/tag.html"
+	context_object_name = "tag"
+
