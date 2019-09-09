@@ -12,7 +12,7 @@ def get_current_date_time():
 class Post(models.Model):
 	title = models.CharField(max_length=50)
 	slug = AutoSlugField(max_length=50, populate_from=('title'))
-	image_url = models.URLField(max_length=200, default="images/stock-computer.jpg")
+	image_url = models.URLField(max_length=200, default="/static/images/default.jpg")
 	projects = models.ManyToManyField("projects.Project", verbose_name="Related Projects", blank=True)
 	tags = models.ManyToManyField("Tag")
 	date_created = models.DateTimeField(primary_key=True, default=get_current_date_time, editable=False)
